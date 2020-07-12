@@ -32,23 +32,15 @@ WORKDIR /var/custom
 # 디렉토리 생성
 RUN mkdir custom/
 RUN mkdir ddl/
-COPY ./custom/cfg.sh /var/custom/
-COPY ./custom/run.sh /var/custom/
-COPY ./ddl/*.sql /var/custom/ddl
-RUN chmod a+x /var/custom/cfg.sh
-RUN chmod a+x /var/custom/run.sh
+RUN mkdir data/
+COPY ./custom/cfg.sh /var/custom/custom/
+COPY ./custom/run.sh /var/custom/custom/
+COPY ./ddl/*.sql /var/custom/ddl/
+COPY ./data/home-sales-training-data.csv /var/custom/data/home-sales-training-data.csv
+RUN chmod a+x /var/custom/custom/cfg.sh
+RUN chmod a+x /var/custom/custom/run.sh
 
 
 
 
-
-# 실행
-# docker build -t <name> .
-# ex) docker build -t mydb2 .
-# docker run -itd --name mydb2 --privileged=true -p 50000:50000 -e LICENSE=accept -e DB2INST1_PASSWORD=db2inst1 mydb2
-# 접속
-# docker exec -ti mydb2 bash -c "su - db2inst1"
-# locale 을 확인
-# locale
-# db2 'get db cfg for <DB명> | grep 'Database code set'
 
