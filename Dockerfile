@@ -32,6 +32,15 @@ WORKDIR /var/custom
 # 디렉토리 생성
 RUN mkdir custom/
 RUN mkdir ddl/
+COPY ./custom/cfg.sh /var/custom/
+COPY ./custom/run.sh /var/custom/
+COPY ./ddl/*.sql /var/custom/ddl
+RUN chmod a+x /var/custom/cfg.sh
+RUN chmod a+x /var/custom/run.sh
+
+
+
+
 
 # 실행
 # docker build -t <name> .
